@@ -1,0 +1,9 @@
+LDR   - load second operand value into first operand registed
+MOV   - load second operand into the first
+ADD   - store results in first register
+SUB
+JMP   - second value required, does nothing
+JPZ   - first operand is a register second is jump target
+JPP   - jump if positive
+HLT
+PRT   - print to console

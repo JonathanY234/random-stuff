@@ -1,0 +1,5 @@
+LDR 0 5
+LDR 1 6
+ADD 0 1
+PRT 0 0
+HLT 0 0 
