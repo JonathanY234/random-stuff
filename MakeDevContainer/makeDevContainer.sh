@@ -24,8 +24,9 @@ sudo dnf install -y \
     gcc-c++ \
     usbutils \
     SDL2-devel \
-    clangd \
-    gmp gmp-devel make ncurses ncurses-compat-libs xz perl pkg-config
+    gmp gmp-devel make ncurses ncurses-compat-libs xz perl pkg-config \
+    clang-tools-extra
+
 
 # vs-codium
 sudo tee -a /etc/yum.repos.d/vscodium.repo << 'REPO'
