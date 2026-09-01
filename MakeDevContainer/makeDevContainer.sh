@@ -1,17 +1,20 @@
 #!/bin/bash
 
 CONTAINER="devbox"
+CONTAINER_HOME_DIR="$HOME/Distrobox/devbox_home"
+
+GIT_NAME="Jonathan"
+GIT_EMAIL="jonathan.Y4W@protonmail.com"
 
 if distrobox list | grep -q "$CONTAINER"; then
     echo "Error: "$CONTAINER" already exists!"
     exit 1
 fi
 
-
-distrobox create --name "$CONTAINER" --image fedora:latest --home /home/Jonny/Distrobox/devbox_home
+mkdir -p "$CONTAINER_HOME_DIR"
+distrobox create --name "$CONTAINER" --image fedora:latest --home "$CONTAINER_HOME_DIR"
 
 distrobox enter "$CONTAINER" -- bash <<'EOF'
-echo "I am in the container"
 
 sudo dnf update -y
 
@@ -20,7 +23,9 @@ sudo dnf install -y \
     gcc \
     gcc-c++ \
     usbutils \
-    SDL2-devel
+    SDL2-devel \
+    clangd \
+    gmp gmp-devel make ncurses ncurses-compat-libs xz perl pkg-config
 
 # vs-codium
 sudo tee -a /etc/yum.repos.d/vscodium.repo << 'REPO'
@@ -36,8 +41,10 @@ REPO
 sudo dnf install -y codium
 distrobox-export --app codium
 
+# Ensure git details set correctly
+git config --global user.name "$GIT_NAME"
+git config --global user.email $GIT_EMAIL"
 
 EOF
 
-
-echo "Done!"
+echo "makeDevContainer: Done!"
