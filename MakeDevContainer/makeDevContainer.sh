@@ -3,13 +3,13 @@
 CONTAINER="devbox"
 CONTAINER_HOME_DIR="$HOME/Distrobox/devbox_home"
 
-GIT_NAME="Jonathan"
-GIT_EMAIL="jonathan.Y4W@protonmail.com"
-
 if distrobox list | grep -q "$CONTAINER"; then
     echo "Error: "$CONTAINER" already exists!"
     exit 1
 fi
+
+podman pull --quiet fedora:latest
+podman image prune -f
 
 mkdir -p "$CONTAINER_HOME_DIR"
 distrobox create --name "$CONTAINER" --image fedora:latest --home "$CONTAINER_HOME_DIR"
@@ -22,6 +22,7 @@ sudo dnf install -y \
     git \
     gcc \
     gcc-c++ \
+    gdb \
     usbutils \
     SDL2-devel \
     gmp gmp-devel make ncurses ncurses-compat-libs xz perl pkg-config \
@@ -43,8 +44,10 @@ sudo dnf install -y codium
 distrobox-export --app codium
 
 # Ensure git details set correctly
+GIT_NAME="Jonathan"
+GIT_EMAIL="jonathan.Y4W@protonmail.com"
 git config --global user.name "$GIT_NAME"
-git config --global user.email $GIT_EMAIL"
+git config --global user.email "$GIT_EMAIL"
 
 EOF
 
