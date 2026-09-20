@@ -10,6 +10,7 @@ fi
 
 podman pull --quiet fedora:latest
 podman image prune -f
+podman image inspect fedora:latest --format 'Using Fedora image {{.Id}} created {{.Created}}'
 
 mkdir -p "$CONTAINER_HOME_DIR"
 distrobox create --name "$CONTAINER" --image fedora:latest --home "$CONTAINER_HOME_DIR"

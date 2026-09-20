@@ -1,0 +1,9 @@
+{
+  "name": "panic_media",
+  "description": "Panic Media native messaging host",
+  "path": "/home/Jonny/Documents/code/random stuff/panic_media/native_host.py",
+  "type": "stdio",
+  "allowed_extensions": [
+    "panic-media@example.org"
+  ]
+}

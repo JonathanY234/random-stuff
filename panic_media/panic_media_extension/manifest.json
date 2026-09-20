@@ -1,0 +1,18 @@
+{
+    "manifest_version": 3,
+    "name": "Panic Media",
+    "version": "1.0",
+    "description": "Closes Firefox tabs based on audio or url matches on command from nativeMessaging",
+    "permissions": ["tabs", "nativeMessaging"],
+    "background": {
+    "scripts": ["background.js"]
+    },
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "panic-media@example.org",
+            "data_collection_permissions": {
+                "required": ["none"]
+            }
+        }
+    }
+}
